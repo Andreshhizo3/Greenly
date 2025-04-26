@@ -8,7 +8,7 @@ import pe.edu.upc.greenly.service.RolService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Greenly/roles")
+@RequestMapping("/Greenly/roless")
 public class RolController {
 
     @Autowired
