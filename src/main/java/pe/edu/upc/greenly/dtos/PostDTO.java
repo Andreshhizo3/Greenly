@@ -1,20 +1,32 @@
 package pe.edu.upc.greenly.dtos;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class PostDTO {
-    private int idPosts;
+    private Long idPosts;
     private String contenido;
     private byte[] imagen;
     private Date fechaPublicacion;
-    private int campañaId;
-    private int donanteId;
+    private Long campañaId;
 
-    public int getIdPosts() {
+    public PostDTO(Long idPosts, String contenido, byte[] imagen, Date fechaPublicacion, Long campañaId) {
+        this.idPosts = idPosts;
+        this.contenido = contenido;
+        this.imagen = imagen;
+        this.fechaPublicacion = fechaPublicacion;
+        this.campañaId = campañaId;
+    }
+
+    public PostDTO() {
+    }
+    /*private Long donanteId;*/
+
+    public Long getIdPosts() {
         return idPosts;
     }
 
-    public void setIdPosts(int idPosts) {
+    public void setIdPosts(Long idPosts) {
         this.idPosts = idPosts;
     }
 
@@ -42,19 +54,22 @@ public class PostDTO {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public int getCampañaId() {
+    public Long getCampañaId() {
         return campañaId;
     }
 
-    public void setCampañaId(int campañaId) {
+    public void setCampañaId(Long campañaId) {
         this.campañaId = campañaId;
     }
 
-    public int getDonanteId() {
-        return donanteId;
-    }
-
-    public void setDonanteId(int donanteId) {
-        this.donanteId = donanteId;
+    @Override
+    public String toString() {
+        return "PostDTO{" +
+                "idPosts=" + idPosts +
+                ", contenido='" + contenido + '\'' +
+                ", imagen=" + Arrays.toString(imagen) +
+                ", fechaPublicacion=" + fechaPublicacion +
+                ", campañaId=" + campañaId +
+                '}';
     }
 }

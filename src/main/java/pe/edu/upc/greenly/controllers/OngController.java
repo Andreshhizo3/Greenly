@@ -10,29 +10,36 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Greenly/ongs")
+// http://localhost:8080/Greenly/ongs/...
 public class OngController {
     @Autowired
     private OngService ongService;
-
-    @PostMapping
+//Funciona
+    @PostMapping("/agregar")
     public ResponseEntity<OngDTO> addOng(@RequestBody OngDTO dto) {
         return ResponseEntity.ok(ongService.addOng(dto));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OngDTO> getOng(@PathVariable int id) {
+    @GetMapping("/obtener/{id}")
+    public ResponseEntity<OngDTO> getOng(@PathVariable Long id) {
         OngDTO dto = ongService.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<OngDTO> listOngs() {
         return ongService.listAll();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOng(@PathVariable int id) {
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> deleteOng(@PathVariable Long id) {
         ongService.deleteOng(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<OngDTO> updateOng(@PathVariable Long id, @RequestBody OngDTO ongDTO) {
+        OngDTO updatedOng = ongService.updateOng(id, ongDTO);
+        return ResponseEntity.ok(updatedOng);
     }
 }

@@ -13,19 +13,19 @@ import java.util.List;
 public class DonacionServiceImpl implements DonacionService {
 
     @Autowired
-    private DonacionRepository donacionRepository;
+    DonacionRepository donacionRepository;
 
     @Autowired
-    private DonanteRepository donanteRepository;
+    DonanteRepository donanteRepository;
 
     @Autowired
-    private CampañaRepository campañaRepository;
+    CampañaRepository campañaRepository;
 
     @Autowired
-    private TipoDonacionRepository tipoDonacionRepository;
+    TipoDonacionRepository tipoDonacionRepository;
 
     @Autowired
-    private EstadoDonacionRepository estadoDonacionRepository;
+    EstadoDonacionRepository estadoDonacionRepository;
 
     @Override
     public DonacionDTO addDonacionDTO(DonacionDTO donacionDTO) {
@@ -44,6 +44,17 @@ public class DonacionServiceImpl implements DonacionService {
         if (donacionDTO.getMetodoEntrega() == null || donacionDTO.getMetodoEntrega().isEmpty()) {
             return null;
         }
+        Donante donante = donanteRepository.findById(donacionDTO.getIdDonante())
+                .orElseThrow(() -> new RuntimeException("Donante no encontrado"));
+
+        Campaña campaña = campañaRepository.findById(donacionDTO.getIdCampaña())
+                .orElseThrow(() -> new RuntimeException("Campaña no encontrada"));
+
+        TipoDonacion tipoDonacion = tipoDonacionRepository.findById(donacionDTO.getIdTipoDonacion())
+                .orElseThrow(() -> new RuntimeException("Tipo de donación no encontrado"));
+
+        EstadoDonacion estadoDonacion = estadoDonacionRepository.findById(donacionDTO.getIdEstadoDonacion())
+                .orElseThrow(() -> new RuntimeException("Estado de donación no encontrado"));
 
         /*
         Donante donante = donanteRepository.findById(donacionDTO.getIdDonante());
@@ -52,10 +63,39 @@ public class DonacionServiceImpl implements DonacionService {
         EstadoDonacion estadoDonacion = estadoDonacionRepository.findById(donacionDTO.getIdEstadoDonacion());
         */
 
-        Donacion donacion = new Donacion(0L, donacionDTO.getName(), donacionDTO.getDescripcion(), donacionDTO.getMontoDonado(), donacionDTO.getMetodoEntrega(), donacionDTO.getFechaDonacion(), null, null, null, null);
+        //Donacion donacion = new Donacion(0L, donacionDTO.getName(), donacionDTO.getDescripcion(), donacionDTO.getMontoDonado(), donacionDTO.getMetodoEntrega(), donacionDTO.getFechaDonacion(), null, null, null, null);
+        Donacion donacion = new Donacion();
+        donacion.setName(donacionDTO.getName());
+        donacion.setDescripcion(donacionDTO.getDescripcion());
+        donacion.setMontoDonado(donacionDTO.getMontoDonado());
+        donacion.setMetodoEntrega(donacionDTO.getMetodoEntrega());
+        donacion.setFechaDonacion(donacionDTO.getFechaDonacion());
+        //return null;
+        donacion.setDonante(donante);
+        donacion.setCampaña(campaña);
+        donacion.setTipoDonacion(tipoDonacion);
+        donacion.setEstadoDonacion(estadoDonacion);
+        Donacion savedDonacion = donacionRepository.save(donacion);
+        System.out.println("ID generado: " + savedDonacion.getId());
+        if(savedDonacion.getId()==null){
+            System.out.println("No se puede agregar la donacion");
+        }
+        else {
+            System.out.println("se puede agregar la donacion");
+        }
+        return new DonacionDTO(
+                savedDonacion.getId(),
+                savedDonacion.getName(),
+                savedDonacion.getDescripcion(),
+                savedDonacion.getMontoDonado(),
+                savedDonacion.getMetodoEntrega(),
+                savedDonacion.getFechaDonacion(),
+                savedDonacion.getDonante().getId(),
+                savedDonacion.getCampaña().getId(),
+                savedDonacion.getTipoDonacion().getId(),
+                savedDonacion.getEstadoDonacion().getId()
 
-        return null;
-        //return donacionRepository.save(donacionDTO);
+        );
     }
 
     @Override

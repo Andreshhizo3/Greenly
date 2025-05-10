@@ -1,6 +1,8 @@
 package pe.edu.upc.greenly.entities;
 
 import jakarta.persistence.*;
+
+import java.util.Arrays;
 import java.util.Date;
 
 @Entity
@@ -9,7 +11,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPosts;
+    private Long idPosts;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contenido;
@@ -25,27 +27,26 @@ public class Post {
     @JoinColumn(name = "campaña_id_campaña")
     private Campaña campaña;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "donante_id_donante")
-    private Donante donante;
+    private Donante donante;*/
 
     public Post() {
     }
 
-    public Post(int idPosts, String contenido, byte[] imagen, Date fechaPublicacion, Campaña campaña, Donante donante) {
+    public Post(Long idPosts, String contenido, byte[] imagen, Date fechaPublicacion, Campaña campaña) {
         this.idPosts = idPosts;
         this.contenido = contenido;
         this.imagen = imagen;
         this.fechaPublicacion = fechaPublicacion;
         this.campaña = campaña;
-        this.donante = donante;
     }
 
-    public int getIdPosts() {
+    public Long getIdPosts() {
         return idPosts;
     }
 
-    public void setIdPosts(int idPosts) {
+    public void setIdPosts(Long idPosts) {
         this.idPosts = idPosts;
     }
 
@@ -81,11 +82,14 @@ public class Post {
         this.campaña = campaña;
     }
 
-    public Donante getDonante() {
-        return donante;
-    }
-
-    public void setDonante(Donante donante) {
-        this.donante = donante;
+    @Override
+    public String toString() {
+        return "Post{" +
+                "idPosts=" + idPosts +
+                ", contenido='" + contenido + '\'' +
+                ", imagen=" + Arrays.toString(imagen) +
+                ", fechaPublicacion=" + fechaPublicacion +
+                ", campaña=" + campaña +
+                '}';
     }
 }

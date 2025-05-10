@@ -11,6 +11,7 @@ import pe.edu.upc.greenly.service.RolService;
 import pe.edu.upc.greenly.service.UsuarioService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,12 +37,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void deleteUsuario(int id) {
+    public void deleteUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }
 
     @Override
-    public UsuarioDTO findById(int id) {
+    public UsuarioDTO findById(Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if (usuario != null) {
             //RolDTO rolDTO = new RolDTO(usuario.getRol().getId(), usuario.getRol().getRol());
@@ -56,5 +57,21 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarios.stream()
                 .map(usuario -> new UsuarioDTO(usuario.getId(), usuario.getUsername(), usuario.getPassword(), usuario.isEnable()))
                 .collect(Collectors.toList());
+    }
+
+
+
+    @Override
+    public UsuarioDTO updateUsuario(Long id, UsuarioDTO usuarioDTO) {
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if (usuario == null) {
+            throw new RuntimeException("Usuario no encontrado con ID: " + id);
+        }
+        usuario.setUsername(usuarioDTO.getUsername());
+        usuario.setPassword(usuarioDTO.getPassword());
+        usuario.setEnable(usuarioDTO.isEnable());
+
+        Usuario updatedUsuario = usuarioRepository.save(usuario);
+        return new UsuarioDTO(updatedUsuario.getId(), updatedUsuario.getUsername(), updatedUsuario.getPassword(), updatedUsuario.isEnable());
     }
 }

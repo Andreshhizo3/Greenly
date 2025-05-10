@@ -1,12 +1,12 @@
 package pe.edu.upc.greenly.dtos;
 
 public class Ubicacion_CampañaDTO {
-    private int id;
+    private Long id;
     private String Departamento;
     private String Distrito;
     private String Direccion;
 
-    public Ubicacion_CampañaDTO(int id, String departamento, String distrito, String direccion) {
+    public Ubicacion_CampañaDTO(Long id, String departamento, String distrito, String direccion) {
         this.id = id;
         Departamento = departamento;
         Distrito = distrito;
@@ -16,11 +16,11 @@ public class Ubicacion_CampañaDTO {
     public Ubicacion_CampañaDTO() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

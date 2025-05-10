@@ -9,7 +9,7 @@ public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idComentario;
+    private Long idComentario;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contenido;
@@ -29,7 +29,7 @@ public class Comentario {
     public Comentario() {
     }
 
-    public Comentario(int idComentario, String contenido, Date fechaComentario, Post post, Donante donante) {
+    public Comentario(Long idComentario, String contenido, Date fechaComentario, Post post, Donante donante) {
         this.idComentario = idComentario;
         this.contenido = contenido;
         this.fechaComentario = fechaComentario;
@@ -37,11 +37,11 @@ public class Comentario {
         this.donante = donante;
     }
 
-    public int getIdComentario() {
+    public Long getIdComentario() {
         return idComentario;
     }
 
-    public void setIdComentario(int idComentario) {
+    public void setIdComentario(Long idComentario) {
         this.idComentario = idComentario;
     }
 

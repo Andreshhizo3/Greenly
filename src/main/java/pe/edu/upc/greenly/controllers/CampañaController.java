@@ -14,25 +14,32 @@ public class CampañaController {
     @Autowired
     private CampañaService campañaService;
 
-    @PostMapping
+    @PostMapping("/agregar")
     public ResponseEntity<CampañaDTO> addCampaña(@RequestBody CampañaDTO dto) {
         return ResponseEntity.ok(campañaService.addCampaña(dto));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CampañaDTO> getCampaña(@PathVariable int id) {
+    @GetMapping("/obtener/{id}")
+    public ResponseEntity<CampañaDTO> getCampaña(@PathVariable Long id) {
         CampañaDTO dto = campañaService.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<CampañaDTO> listCampañas() {
         return campañaService.listAll();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCampaña(@PathVariable int id) {
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> deleteCampaña(@PathVariable Long id) {
         campañaService.deleteCampaña(id);
         return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<CampañaDTO> modificarCampaña(
+            @PathVariable Long id,
+            @RequestBody CampañaDTO dto) {
+        CampañaDTO updated = campañaService.updateCampaña(id, dto);
+        return ResponseEntity.ok(updated);
     }
 }

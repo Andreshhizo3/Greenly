@@ -5,17 +5,17 @@ import pe.edu.upc.greenly.entities.Usuario;
 import java.time.LocalDate;
 
 public class DonanteDTO {
-    private int id;
+    private Long id;
     private String nombre;
     private Long dni;
     private String correo;
     private String telefono;
     private String direccion;
     private LocalDate fechaNacimiento;
-    private int usuarioId;
+    private Long usuarioId;
 
 
-    public DonanteDTO(int id, String nombre, Long dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, int usuarioId) {
+    public DonanteDTO(Long id, String nombre, Long dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, Long usuarioId) {
         this.id = id;
         this.nombre = nombre;
         this.dni = dni;
@@ -29,11 +29,11 @@ public class DonanteDTO {
     public DonanteDTO() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -85,11 +85,11 @@ public class DonanteDTO {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getUsuarioId() {
+    public Long getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(int usuarioId) {
+    public void setUsuarioId(Long usuarioId) {
         this.usuarioId = usuarioId;
     }
 

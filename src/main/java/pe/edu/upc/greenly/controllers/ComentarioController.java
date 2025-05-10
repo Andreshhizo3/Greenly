@@ -25,7 +25,7 @@ public class ComentarioController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id) {
+    public void eliminar(@PathVariable("id") Long id) {
         cS.delete(id);
     }
 }

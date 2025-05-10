@@ -48,9 +48,9 @@ public class DonanteServiceImpl implements DonanteService {
         );
     }
 
-    public void deleteDonante(int id) {donanteRepository.deleteById(id);}
+    public void deleteDonante(Long id) {donanteRepository.deleteById(id);}
 
-    public DonanteDTO findDonanteById(int id) {
+    public DonanteDTO findDonanteById(Long id) {
         Donante donante = donanteRepository.findById(id).orElse(null);
         if (donante == null || donante.getUsuario() == null) {
             return null;

@@ -46,12 +46,12 @@ public class OngServiceImpl implements OngService {
     }
 
     @Override
-    public void deleteOng(int id) {
+    public void deleteOng(Long id) {
         ongRepository.deleteById(id);
     }
 
     @Override
-    public OngDTO findById(int id) {
+    public OngDTO findById(Long id) {
         Ong ong = ongRepository.findById(id).orElse(null);
         if (ong == null || ong.getUsuario() == null) {
             return null;
@@ -72,7 +72,7 @@ public class OngServiceImpl implements OngService {
     public List<OngDTO> listAll() {
         List<Ong> ongs = ongRepository.findAll();
         return ongs.stream()
-                .filter(ong -> ong.getUsuario() != null)
+                //.filter(ong -> ong.getUsuario() != null)
                 .map(ong -> new OngDTO(
                         ong.getId(),
                         ong.getNombre(),
@@ -80,8 +80,46 @@ public class OngServiceImpl implements OngService {
                         ong.getCorreo(),
                         ong.getDireccion(),
                         ong.getTelefono(),
-                        ong.getUsuario().getId()
+                        //ong.getUsuario().getId()
+                        //Para que acepte las ONG con usuarioId null tambien
+                        ong.getUsuario() != null ? ong.getUsuario().getId(): null
                 ))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public OngDTO updateOng(Long id, OngDTO ongDTO) {
+        // Buscar la ONG por ID
+        Ong ong = ongRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ONG no encontrada con ID: " + id));
+
+        // Si el DTO incluye un usuarioId, buscar el usuario relacionado
+        Usuario usuario = null;
+        if (ongDTO.getUsuarioId() != null) {
+            usuario = usuarioRepository.findById(ongDTO.getUsuarioId())
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + ongDTO.getUsuarioId()));
+        }
+
+        // Actualizar los campos de la entidad ONG
+        ong.setNombre(ongDTO.getNombre());
+        ong.setDescripcion(ongDTO.getDescripcion());
+        ong.setCorreo(ongDTO.getCorreo());
+        ong.setDireccion(ongDTO.getDireccion());
+        ong.setTelefono(ongDTO.getTelefono());
+        ong.setUsuario(usuario);  // Puede ser null si se desea desvincular
+
+        // Guardar los cambios
+        Ong updatedOng = ongRepository.save(ong);
+
+        // Retornar el DTO actualizado
+        return new OngDTO(
+                updatedOng.getId(),
+                updatedOng.getNombre(),
+                updatedOng.getDescripcion(),
+                updatedOng.getCorreo(),
+                updatedOng.getDireccion(),
+                updatedOng.getTelefono(),
+                updatedOng.getUsuario() != null ? updatedOng.getUsuario().getId() : null
+        );
     }
 }

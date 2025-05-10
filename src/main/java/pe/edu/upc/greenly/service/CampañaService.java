@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface CampañaService {
     CampañaDTO addCampaña (CampañaDTO campañaDTO);
-    void deleteCampaña (int id);
-    CampañaDTO findById(int id);
+    void deleteCampaña (Long id);
+    CampañaDTO findById(Long id);
     List<CampañaDTO> listAll();
+    CampañaDTO updateCampaña(Long id, CampañaDTO dto);
 }

@@ -8,7 +8,7 @@ public class CampañaFavorita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCampañaFav;
+    private Long idCampañaFav;
 
     @ManyToOne
     @JoinColumn(name = "campaña_id_campaña")
@@ -21,17 +21,17 @@ public class CampañaFavorita {
     public CampañaFavorita() {
     }
 
-    public CampañaFavorita(int idCampañaFav, Campaña campaña, Donante donante) {
+    public CampañaFavorita(Long idCampañaFav, Campaña campaña, Donante donante) {
         this.idCampañaFav = idCampañaFav;
         this.campaña = campaña;
         this.donante = donante;
     }
 
-    public int getIdCampañaFav() {
+    public Long getIdCampañaFav() {
         return idCampañaFav;
     }
 
-    public void setIdCampañaFav(int idCampañaFav) {
+    public void setIdCampañaFav(Long idCampañaFav) {
         this.idCampañaFav = idCampañaFav;
     }
 

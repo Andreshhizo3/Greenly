@@ -1,5 +1,6 @@
 package pe.edu.upc.greenly.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,15 +8,16 @@ import jakarta.persistence.*;
 public class Ubicacion_Campaña {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String Departamento;
     private String Distrito;
     private String Direccion;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "ubicacion_Campaña")
     private Campaña campaña;
 
-    public Ubicacion_Campaña(int id, String departamento, String distrito, String direccion, Campaña campaña) {
+    public Ubicacion_Campaña(Long id, String departamento, String distrito, String direccion, Campaña campaña) {
         this.id = id;
         Departamento = departamento;
         Distrito = distrito;
@@ -26,11 +28,11 @@ public class Ubicacion_Campaña {
     public Ubicacion_Campaña() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

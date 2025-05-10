@@ -3,17 +3,17 @@ package pe.edu.upc.greenly.dtos;
 import java.util.Date;
 
 public class ComentarioDTO {
-    private int idComentario;
+    private Long idComentario;
     private String contenido;
     private Date fechaComentario;
-    private int postId;
-    private int donanteId;
+    private Long postId;
+    private Long donanteId;
 
-    public int getIdComentario() {
+    public Long getIdComentario() {
         return idComentario;
     }
 
-    public void setIdComentario(int idComentario) {
+    public void setIdComentario(Long idComentario) {
         this.idComentario = idComentario;
     }
 
@@ -33,19 +33,19 @@ public class ComentarioDTO {
         this.fechaComentario = fechaComentario;
     }
 
-    public int getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(int postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 
-    public int getDonanteId() {
+    public Long getDonanteId() {
         return donanteId;
     }
 
-    public void setDonanteId(int donanteId) {
+    public void setDonanteId(Long donanteId) {
         this.donanteId = donanteId;
     }
 }

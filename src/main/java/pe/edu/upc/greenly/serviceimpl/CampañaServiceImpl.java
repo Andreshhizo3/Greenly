@@ -55,12 +55,12 @@ public class CampañaServiceImpl implements CampañaService {
     }
 
     @Override
-    public void deleteCampaña(int id) {
+    public void deleteCampaña(Long id) {
         campañaRepository.deleteById(id);
     }
 
     @Override
-    public CampañaDTO findById(int id) {
+    public CampañaDTO findById(Long id) {
         return campañaRepository.findById(id)
                 .map(c -> new CampañaDTO(
                         c.getId(),
@@ -88,4 +88,36 @@ public class CampañaServiceImpl implements CampañaService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public CampañaDTO updateCampaña(Long id, CampañaDTO dto) {
+        Campaña campañaExistente = campañaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Campaña no encontrada con ID: " + id));
+
+        Ong ong = ongRepository.findById(dto.getOngId())
+                .orElseThrow(() -> new RuntimeException("ONG no encontrada con ID: " + dto.getOngId()));
+
+        Ubicacion_Campaña ubicacion = ubicacionCampañaRepository.findById(dto.getUbicacion_CampañaId())
+                .orElseThrow(() -> new RuntimeException("Ubicación no encontrada con ID: " + dto.getUbicacion_CampañaId()));
+
+        campañaExistente.setTitulo(dto.getTitulo());
+        campañaExistente.setDescripcion(dto.getDescripcion());
+        campañaExistente.setFechaInicio(dto.getFechaInicio());
+        campañaExistente.setFechaFin(dto.getFechaFin());
+        campañaExistente.setOng(ong);
+        campañaExistente.setUbicacion_Campaña(ubicacion);
+
+        Campaña updated = campañaRepository.save(campañaExistente);
+
+        return new CampañaDTO(
+                updated.getId(),
+                updated.getTitulo(),
+                updated.getDescripcion(),
+                updated.getFechaInicio(),
+                updated.getFechaFin(),
+                updated.getOng().getId(),
+                updated.getUbicacion_Campaña().getId()
+        );
+    }
+
 }

@@ -1,15 +1,15 @@
 package pe.edu.upc.greenly.dtos;
 
 public class CampañaFavoritaDTO {
-    private int idCampañaFav;
+    private Long idCampañaFav;
     private int campañaId;
     private int donanteId;
 
-    public int getIdCampañaFav() {
+    public Long getIdCampañaFav() {
         return idCampañaFav;
     }
 
-    public void setIdCampañaFav(int idCampañaFav) {
+    public void setIdCampañaFav(Long idCampañaFav) {
         this.idCampañaFav = idCampañaFav;
     }
 

@@ -33,12 +33,12 @@ public class RolServiceImpl implements RolService {
     }
 
     @Override
-    public void deleteRol(int id) {
+    public void deleteRol(Long id) {
         rolRepository.deleteById(id);
     }
 
     @Override
-    public RolDTO findById(int id) {
+    public RolDTO findById(Long id) {
         Rol rol = rolRepository.findById(id).orElse(null);
         if (rol != null) {
             return new RolDTO(rol.getId(), rol.getRol(), rol.getUsuario().getId());

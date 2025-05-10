@@ -6,5 +6,5 @@ import java.util.List;
 public interface CampañaFavoritaService {
     public void insert(CampañaFavorita campañaFavorita);
     public List<CampañaFavorita> list();
-    public void delete(int id);
+    public void delete(Long id);
 }

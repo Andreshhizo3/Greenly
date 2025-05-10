@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DonanteService {
     DonanteDTO addDonante(DonanteDTO donanteDTO);
-    void deleteDonante(int id);
-    DonanteDTO findDonanteById(int id);
+    void deleteDonante(Long id);
+    DonanteDTO findDonanteById(Long id);
     List<DonanteDTO> listAllDonantes();
 }

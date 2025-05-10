@@ -5,15 +5,15 @@ import jakarta.persistence.OneToOne;
 import pe.edu.upc.greenly.entities.Usuario;
 
 public class OngDTO {
-    private int id;
+    private Long id;
     private String nombre;
     private String descripcion;
     private String correo;
     private String direccion;
     private String telefono;
-    private int usuarioId; //Solo el ID del usuario relacionado
+    private Long usuarioId; //Solo el ID del usuario relacionado
 
-    public OngDTO(int id, String nombre, String descripcion, String correo, String direccion, String telefono, int usuarioId) {
+    public OngDTO(Long id, String nombre, String descripcion, String correo, String direccion, String telefono, Long usuarioId) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -26,11 +26,11 @@ public class OngDTO {
     public OngDTO() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -74,11 +74,11 @@ public class OngDTO {
         this.telefono = telefono;
     }
 
-    public int getUsuarioId() {
+    public Long getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(int usuarioId) {
+    public void setUsuarioId(Long usuarioId) {
         this.usuarioId = usuarioId;
     }
 

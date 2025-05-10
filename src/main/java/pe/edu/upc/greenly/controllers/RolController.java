@@ -21,7 +21,7 @@ public class RolController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RolDTO> getRol(@PathVariable int id) {
+    public ResponseEntity<RolDTO> getRol(@PathVariable Long id) {
         RolDTO dto = rolService.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
@@ -32,7 +32,7 @@ public class RolController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRol(@PathVariable int id) {
+    public ResponseEntity<Void> deleteRol(@PathVariable Long id) {
         rolService.deleteRol(id);
         return ResponseEntity.noContent().build();
     }

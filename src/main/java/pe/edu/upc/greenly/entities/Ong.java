@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Ong {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nombre;
     private String descripcion;
     private String correo;
@@ -17,7 +17,7 @@ public class Ong {
     @JoinColumn(name="usuario_id",referencedColumnName = "id")
     private Usuario usuario;
 
-    public Ong(int id, String nombre, String descripcion, String correo, String direccion, String telefono, Usuario usuario) {
+    public Ong(Long id, String nombre, String descripcion, String correo, String direccion, String telefono, Usuario usuario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -30,11 +30,11 @@ public class Ong {
     public Ong() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

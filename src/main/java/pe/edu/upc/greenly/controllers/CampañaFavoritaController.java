@@ -25,7 +25,7 @@ public class CampañaFavoritaController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id) {
+    public void eliminar(@PathVariable("id") Long id) {
         cfS.delete(id);
     }
 }

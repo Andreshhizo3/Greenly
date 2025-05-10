@@ -7,16 +7,16 @@ import pe.edu.upc.greenly.entities.Ong;
 import java.time.LocalDate;
 
 public class CampañaDTO {
-    private int id;
+    private Long id;
     private String titulo;
     private String descripcion;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
-    private int ongId;
-    private int ubicacion_CampañaId;
+    private Long ongId;
+    private Long ubicacion_CampañaId;
 
 
-    public CampañaDTO(int id, String titulo, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, int ongId, int ubicacion_CampañaId) {
+    public CampañaDTO(Long id, String titulo, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, Long ongId, Long ubicacion_CampañaId) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -29,11 +29,11 @@ public class CampañaDTO {
     public CampañaDTO() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -69,19 +69,19 @@ public class CampañaDTO {
         this.fechaFin = fechaFin;
     }
 
-    public int getOngId() {
+    public Long getOngId() {
         return ongId;
     }
 
-    public void setOngId(int ongId) {
+    public void setOngId(Long ongId) {
         this.ongId = ongId;
     }
 
-    public int getUbicacion_CampañaId() {
+    public Long getUbicacion_CampañaId() {
         return ubicacion_CampañaId;
     }
 
-    public void setUbicacion_CampañaId(int ubicacion_CampañaId) {
+    public void setUbicacion_CampañaId(Long ubicacion_CampañaId) {
         this.ubicacion_CampañaId = ubicacion_CampañaId;
     }
 

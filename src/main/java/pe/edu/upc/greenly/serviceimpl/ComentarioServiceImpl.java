@@ -25,7 +25,7 @@ public class ComentarioServiceImpl implements ComentarioService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         cR.deleteById(id);
     }
 }

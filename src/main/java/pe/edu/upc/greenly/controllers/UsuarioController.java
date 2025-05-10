@@ -15,25 +15,30 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
+    @PostMapping("/agregar")
     public ResponseEntity<UsuarioDTO> addUsuario(@RequestBody UsuarioDTO dto) {
         return ResponseEntity.ok(usuarioService.addUsuario(dto));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> getUsuario(@PathVariable int id) {
+    @GetMapping("/obtener/{id}")
+    public ResponseEntity<UsuarioDTO> getUsuario(@PathVariable Long id) {
         UsuarioDTO dto = usuarioService.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<UsuarioDTO> listUsuarios() {
         return usuarioService.listAll();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsuario(@PathVariable int id) {
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         usuarioService.deleteUsuario(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<UsuarioDTO> updateUsuario(@PathVariable Long id,@RequestBody UsuarioDTO usuarioDTO) {
+        return ResponseEntity.ok(usuarioService.updateUsuario(id, usuarioDTO));
     }
 }

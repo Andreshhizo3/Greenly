@@ -16,21 +16,19 @@ public class Donacion {
     private Double montoDonado;
     private String metodoEntrega;
     private LocalDate fechaDonacion;
-
     /*
     private Long idDonante;
     private Long idCampaña;
     private Long idTipoDonacion;
     private Long idEstadoDonacion;
     */
-
     @ManyToOne
     @JoinColumn(name = "donante_id")
     private Donante donante;
 
     @ManyToOne
     @JoinColumn(name = "campania_id")
-    private Campaña campania;
+    private Campaña campaña;
 
     @ManyToOne
     @JoinColumn(name = "estado_donacion_id")
@@ -50,7 +48,7 @@ public class Donacion {
         this.montoDonado = montoDonado;
         this.fechaDonacion = fechaDonacion;
         this.donante = donante;
-        this.campania = campania;
+        this.campaña = campaña;
         this.tipoDonacion = tipoDonacion;
         this.estadoDonacion = estadoDonacion;
     }
@@ -111,12 +109,12 @@ public class Donacion {
         this.donante = donante;
     }
 
-    public Campaña getCampania() {
-        return campania;
+    public Campaña getCampaña() {
+        return campaña;
     }
 
-    public void setCampania(Campaña campania) {
-        this.campania = campania;
+    public void setCampaña(Campaña campaña) {
+        this.campaña = campaña;
     }
 
     public EstadoDonacion getEstadoDonacion() {

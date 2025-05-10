@@ -19,7 +19,7 @@ public class DonanteController {
     public ResponseEntity<DonanteDTO> addDonante (@RequestBody DonanteDTO donanteDTO) {return ResponseEntity.ok(donanteService.addDonante(donanteDTO));}
 
     @GetMapping("{id}")
-    public ResponseEntity<DonanteDTO> getDonante(@PathVariable int id) {
+    public ResponseEntity<DonanteDTO> getDonante(@PathVariable Long id) {
         DonanteDTO donanteDTO= donanteService.findDonanteById(id);
         return donanteDTO !=null ? ResponseEntity.ok(donanteDTO) : ResponseEntity.notFound().build();
 
@@ -30,7 +30,7 @@ public class DonanteController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteDonante(@PathVariable int id) {
+    public ResponseEntity<Void> deleteDonante(@PathVariable Long id) {
         donanteService.deleteDonante(id);
         return ResponseEntity.noContent().build();
 

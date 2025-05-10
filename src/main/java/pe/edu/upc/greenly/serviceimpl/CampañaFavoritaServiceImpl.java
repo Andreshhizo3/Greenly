@@ -25,7 +25,7 @@ public class CampañaFavoritaServiceImpl implements CampañaFavoritaService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         cfR.deleteById(id);
     }
 }
