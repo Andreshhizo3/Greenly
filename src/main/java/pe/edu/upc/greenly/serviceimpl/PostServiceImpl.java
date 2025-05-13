@@ -88,7 +88,7 @@ public class PostServiceImpl implements PostService {
         );
     }
 
-    @Override
+    /*@Override
     public PostDTO updatePost(Long id, PostDTO postDTO) {
         // Buscar la ONG por ID
         Post post = postRepository.findById(id)
@@ -119,5 +119,39 @@ public class PostServiceImpl implements PostService {
                 updatedPost.getFechaPublicacion(),
                 updatedPost.getCampaña() != null ? updatedPost.getCampaña().getId() : null
         );
+    }*/
+
+    @Override
+    public PostDTO updatePost(Long id, PostDTO postDTO) {
+        // Buscar el Post por ID
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post no encontrada con ID: " + id));
+        // Actualizar solo si los valores no son null
+        if (postDTO.getContenido() != null) {
+            post.setContenido(postDTO.getContenido());
+        }
+        if (postDTO.getImagen() != null) {
+            post.setImagen(postDTO.getImagen());
+        }
+        if (postDTO.getFechaPublicacion() != null) {
+            post.setFechaPublicacion(postDTO.getFechaPublicacion());
+        }
+        // Si el DTO incluye un campañaId, buscar la campaña relacionada
+        if (postDTO.getCampañaId() != null) {
+            Campaña campaña = campañaRepository.findById(postDTO.getCampañaId())
+                    .orElseThrow(() -> new RuntimeException("Campaña no encontrada con ID: " + postDTO.getCampañaId()));
+            post.setCampaña(campaña);
+        }
+        // Guardar los cambios
+        Post updatedPost = postRepository.save(post);
+        // Retornar el DTO actualizado
+        return new PostDTO(
+                updatedPost.getIdPosts(),
+                updatedPost.getContenido(),
+                updatedPost.getImagen(),
+                updatedPost.getFechaPublicacion(),
+                updatedPost.getCampaña() != null ? updatedPost.getCampaña().getId() : null
+        );
     }
+
 }

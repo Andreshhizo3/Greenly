@@ -3,17 +3,15 @@ package pe.edu.upc.greenly.dtos;
 import java.time.LocalDate;
 
 public class TipoDonacionDTO {
-
     private Long id;
-    private String estado;
-    private LocalDate fecha;
+    private String nombre;
 
-    public TipoDonacionDTO() {}
-
-    public TipoDonacionDTO(Long id, String estado, LocalDate fecha) {
+    public TipoDonacionDTO(Long id, String nombre) {
         this.id = id;
-        this.estado = estado;
-        this.fecha = fecha;
+        this.nombre = nombre;
+    }
+
+    public TipoDonacionDTO() {
     }
 
     public Long getId() {
@@ -24,19 +22,19 @@ public class TipoDonacionDTO {
         this.id = id;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    @Override
+    public String toString() {
+        return "TipoDonacionDTO{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                '}';
     }
 }

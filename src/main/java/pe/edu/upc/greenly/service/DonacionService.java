@@ -9,7 +9,8 @@ import java.util.List;
 public interface DonacionService {
     public DonacionDTO addDonacionDTO(DonacionDTO donacionDTO);
     public void deleteDonacion(Long id);
-    public Donacion findById(Long id);
-    public List<Donacion> listAll();
-    public Donacion editDonacion(Donacion donacionDTO);
+    public DonacionDTO findById(Long id);
+    public List<DonacionDTO> listAll();
+    //public Donacion editDonacion(Donacion donacionDTO);
+    DonacionDTO updateDonacion(Long id, DonacionDTO dto);
 }

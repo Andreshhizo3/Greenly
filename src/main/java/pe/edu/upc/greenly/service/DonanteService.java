@@ -10,4 +10,5 @@ public interface DonanteService {
     void deleteDonante(Long id);
     DonanteDTO findDonanteById(Long id);
     List<DonanteDTO> listAllDonantes();
+    DonanteDTO updateDonante(Long id, DonanteDTO donanteDTO);
 }

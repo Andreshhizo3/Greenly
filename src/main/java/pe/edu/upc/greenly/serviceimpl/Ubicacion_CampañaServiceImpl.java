@@ -64,7 +64,7 @@ public class Ubicacion_CampañaServiceImpl implements Ubicacion_CampañaService 
                 .collect(Collectors.toList());
     }
 
-    @Override
+    /*@Override
     public Ubicacion_CampañaDTO updateUbicacion_Campaña(Long id, Ubicacion_CampañaDTO ubicacion_campañaDTO) {
         Ubicacion_Campaña ubicacion_campaña = ubicacionCampañaRepository.findById(id).orElse(null);
         if (ubicacion_campaña == null) {
@@ -76,5 +76,35 @@ public class Ubicacion_CampañaServiceImpl implements Ubicacion_CampañaService 
 
         Ubicacion_Campaña updateUbicacion_Campaña = ubicacionCampañaRepository.save(ubicacion_campaña);
         return new Ubicacion_CampañaDTO(updateUbicacion_Campaña.getId(),updateUbicacion_Campaña.getDepartamento(),updateUbicacion_Campaña.getDistrito(),updateUbicacion_Campaña.getDireccion());
+    }*/
+
+    @Override
+    public Ubicacion_CampañaDTO updateUbicacion_Campaña(Long id, Ubicacion_CampañaDTO ubicacion_campañaDTO) {
+        Ubicacion_Campaña ubicacion_campaña = ubicacionCampañaRepository.findById(id).orElse(null);
+        if (ubicacion_campaña == null) {
+            throw new RuntimeException("Ubicación de campaña no encontrada con ID: " + id);
+        }
+
+        if (ubicacion_campañaDTO.getDepartamento() != null) {
+            ubicacion_campaña.setDepartamento(ubicacion_campañaDTO.getDepartamento());
+        }
+
+        if (ubicacion_campañaDTO.getDistrito() != null) {
+            ubicacion_campaña.setDistrito(ubicacion_campañaDTO.getDistrito());
+        }
+
+        if (ubicacion_campañaDTO.getDireccion() != null) {
+            ubicacion_campaña.setDireccion(ubicacion_campañaDTO.getDireccion());
+        }
+
+        Ubicacion_Campaña updateUbicacion_Campaña = ubicacionCampañaRepository.save(ubicacion_campaña);
+
+        return new Ubicacion_CampañaDTO(
+                updateUbicacion_Campaña.getId(),
+                updateUbicacion_Campaña.getDepartamento(),
+                updateUbicacion_Campaña.getDistrito(),
+                updateUbicacion_Campaña.getDireccion()
+        );
     }
+
 }

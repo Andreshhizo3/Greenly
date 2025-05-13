@@ -89,7 +89,7 @@ public class CampañaServiceImpl implements CampañaService {
                 .collect(Collectors.toList());
     }
 
-    @Override
+   /* @Override
     public CampañaDTO updateCampaña(Long id, CampañaDTO dto) {
         Campaña campañaExistente = campañaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Campaña no encontrada con ID: " + id));
@@ -118,6 +118,58 @@ public class CampañaServiceImpl implements CampañaService {
                 updated.getOng().getId(),
                 updated.getUbicacion_Campaña().getId()
         );
-    }
+    }*/
+   @Override
+   public CampañaDTO updateCampaña(Long id, CampañaDTO dto) {
+       Campaña campañaExistente = campañaRepository.findById(id)
+               .orElseThrow(() -> new RuntimeException("Campaña no encontrada con ID: " + id));
+
+       // Actualizar título si no es null
+       if (dto.getTitulo() != null) {
+           campañaExistente.setTitulo(dto.getTitulo());
+       }
+
+       // Actualizar descripción si no es null
+       if (dto.getDescripcion() != null) {
+           campañaExistente.setDescripcion(dto.getDescripcion());
+       }
+
+       // Actualizar fecha de inicio si no es null
+       if (dto.getFechaInicio() != null) {
+           campañaExistente.setFechaInicio(dto.getFechaInicio());
+       }
+
+       // Actualizar fecha de fin si no es null
+       if (dto.getFechaFin() != null) {
+           campañaExistente.setFechaFin(dto.getFechaFin());
+       }
+
+       // Actualizar ONG si ongId no es null
+       if (dto.getOngId() != null) {
+           Ong ong = ongRepository.findById(dto.getOngId())
+                   .orElseThrow(() -> new RuntimeException("ONG no encontrada con ID: " + dto.getOngId()));
+           campañaExistente.setOng(ong);
+       }
+
+       // Actualizar ubicación si ubicacionCampañaId no es null
+       if (dto.getUbicacion_CampañaId() != null) {
+           Ubicacion_Campaña ubicacion = ubicacionCampañaRepository.findById(dto.getUbicacion_CampañaId())
+                   .orElseThrow(() -> new RuntimeException("Ubicación no encontrada con ID: " + dto.getUbicacion_CampañaId()));
+           campañaExistente.setUbicacion_Campaña(ubicacion);
+       }
+
+       Campaña updated = campañaRepository.save(campañaExistente);
+
+       return new CampañaDTO(
+               updated.getId(),
+               updated.getTitulo(),
+               updated.getDescripcion(),
+               updated.getFechaInicio(),
+               updated.getFechaFin(),
+               updated.getOng() != null ? updated.getOng().getId() : null,
+               updated.getUbicacion_Campaña() != null ? updated.getUbicacion_Campaña().getId() : null
+       );
+   }
+
 
 }

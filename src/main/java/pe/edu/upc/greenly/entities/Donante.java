@@ -14,7 +14,7 @@ public class Donante {
 
     private Long id;
     private String nombre;
-    private Long dni;
+    private String dni;
     private String correo;
     private String telefono;
     private String direccion;
@@ -28,8 +28,16 @@ public class Donante {
     @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
     private List<Donacion> donaciones;
 
+    @JsonIgnore
+    @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
+    private List<Comentario> comentarios;
 
-    public Donante(Long id, String nombre, Long dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, Usuario usuario, List<Donacion> donaciones) {
+    @JsonIgnore
+    @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
+    private List<CampañaFavorita> campañaFavoritas;
+
+
+    public Donante(Long id, String nombre, String dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, Usuario usuario, List<Donacion> donaciones, List<Comentario> comentarios, List<CampañaFavorita> campañaFavoritas) {
         this.id = id;
         this.nombre = nombre;
         this.dni = dni;
@@ -39,6 +47,8 @@ public class Donante {
         this.fechaNacimiento = fechaNacimiento;
         this.usuario = usuario;
         this.donaciones = donaciones;
+        this.comentarios = comentarios;
+        this.campañaFavoritas = campañaFavoritas;
     }
 
     public Donante() {
@@ -60,11 +70,11 @@ public class Donante {
         this.nombre = nombre;
     }
 
-    public Long getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Long dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -116,18 +126,36 @@ public class Donante {
         this.donaciones = donaciones;
     }
 
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public List<CampañaFavorita> getCampañaFavoritas() {
+        return campañaFavoritas;
+    }
+
+    public void setCampañaFavoritas(List<CampañaFavorita> campañaFavoritas) {
+        this.campañaFavoritas = campañaFavoritas;
+    }
+
     @Override
     public String toString() {
         return "Donante{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", dni=" + dni +
+                ", dni='" + dni + '\'' +
                 ", correo='" + correo + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", usuario=" + usuario +
                 ", donaciones=" + donaciones +
+                ", comentarios=" + comentarios +
+                ", campañaFavoritas=" + campañaFavoritas +
                 '}';
     }
 }

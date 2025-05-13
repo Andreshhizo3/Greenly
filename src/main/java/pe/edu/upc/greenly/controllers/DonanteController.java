@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.DonanteDTO;
+import pe.edu.upc.greenly.dtos.OngDTO;
 import pe.edu.upc.greenly.service.DonanteService;
 
 import java.util.List;
@@ -15,25 +16,31 @@ public class DonanteController {
     @Autowired
     private DonanteService donanteService;
 
-    @PostMapping
+    @PostMapping("/agregar")
     public ResponseEntity<DonanteDTO> addDonante (@RequestBody DonanteDTO donanteDTO) {return ResponseEntity.ok(donanteService.addDonante(donanteDTO));}
 
-    @GetMapping("{id}")
+    @GetMapping("/obtener/{id}")
     public ResponseEntity<DonanteDTO> getDonante(@PathVariable Long id) {
         DonanteDTO donanteDTO= donanteService.findDonanteById(id);
         return donanteDTO !=null ? ResponseEntity.ok(donanteDTO) : ResponseEntity.notFound().build();
 
     }
-    @GetMapping
+    @GetMapping("/listar")
     public List<DonanteDTO> listDonantes() {
         return donanteService.listAllDonantes();
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> deleteDonante(@PathVariable Long id) {
         donanteService.deleteDonante(id);
         return ResponseEntity.noContent().build();
 
+    }
+
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<DonanteDTO> updateDonante(@PathVariable Long id, @RequestBody DonanteDTO donanteDTO) {
+        DonanteDTO updateDonante = donanteService.updateDonante(id, donanteDTO);
+        return ResponseEntity.ok(updateDonante);
     }
 
 }

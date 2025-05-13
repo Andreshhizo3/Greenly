@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class DonanteDTO {
     private Long id;
     private String nombre;
-    private Long dni;
+    private String dni;
     private String correo;
     private String telefono;
     private String direccion;
@@ -15,7 +15,7 @@ public class DonanteDTO {
     private Long usuarioId;
 
 
-    public DonanteDTO(Long id, String nombre, Long dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, Long usuarioId) {
+    public DonanteDTO(Long id, String nombre, String dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, Long usuarioId) {
         this.id = id;
         this.nombre = nombre;
         this.dni = dni;
@@ -45,11 +45,11 @@ public class DonanteDTO {
         this.nombre = nombre;
     }
 
-    public Long getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Long dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 

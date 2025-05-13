@@ -3,8 +3,10 @@ package pe.edu.upc.greenly.serviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.greenly.dtos.RolDTO;
+import pe.edu.upc.greenly.dtos.Ubicacion_CampañaDTO;
 import pe.edu.upc.greenly.dtos.UsuarioDTO;
 import pe.edu.upc.greenly.entities.Rol;
+import pe.edu.upc.greenly.entities.Ubicacion_Campaña;
 import pe.edu.upc.greenly.entities.Usuario;
 import pe.edu.upc.greenly.repositories.UsuarioRepository;
 import pe.edu.upc.greenly.service.RolService;
@@ -61,7 +63,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
 
-    @Override
+    /*@Override
     public UsuarioDTO updateUsuario(Long id, UsuarioDTO usuarioDTO) {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if (usuario == null) {
@@ -73,5 +75,34 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         Usuario updatedUsuario = usuarioRepository.save(usuario);
         return new UsuarioDTO(updatedUsuario.getId(), updatedUsuario.getUsername(), updatedUsuario.getPassword(), updatedUsuario.isEnable());
+    }*/
+
+    @Override
+    public UsuarioDTO updateUsuario(Long id, UsuarioDTO usuarioDTO) {
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if (usuario == null) {
+            throw new RuntimeException("Usuario no encontrada con ID: " + id);
+        }
+
+        if (usuarioDTO.getUsername() != null) {
+            usuario.setUsername(usuarioDTO.getUsername());
+        }
+
+        if (usuarioDTO.getPassword() != null) {
+            usuario.setPassword(usuarioDTO.getPassword());
+        }
+
+        if (usuarioDTO.isEnable() != null) {
+            usuario.setEnable(usuarioDTO.isEnable());
+        }
+
+        Usuario updateUsuario = usuarioRepository.save(usuario);
+
+        return new UsuarioDTO(
+                updateUsuario.getId(),
+                updateUsuario.getUsername(),
+                updateUsuario.getPassword(),
+                updateUsuario.isEnable()
+        );
     }
 }

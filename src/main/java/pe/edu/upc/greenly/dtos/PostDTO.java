@@ -1,5 +1,6 @@
 package pe.edu.upc.greenly.dtos;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -7,10 +8,10 @@ public class PostDTO {
     private Long idPosts;
     private String contenido;
     private byte[] imagen;
-    private Date fechaPublicacion;
+    private LocalDate fechaPublicacion;
     private Long campañaId;
 
-    public PostDTO(Long idPosts, String contenido, byte[] imagen, Date fechaPublicacion, Long campañaId) {
+    public PostDTO(Long idPosts, String contenido, byte[] imagen, LocalDate fechaPublicacion, Long campañaId) {
         this.idPosts = idPosts;
         this.contenido = contenido;
         this.imagen = imagen;
@@ -46,11 +47,11 @@ public class PostDTO {
         this.imagen = imagen;
     }
 
-    public Date getFechaPublicacion() {
+    public LocalDate getFechaPublicacion() {
         return fechaPublicacion;
     }
 
-    public void setFechaPublicacion(Date fechaPublicacion) {
+    public void setFechaPublicacion(LocalDate fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
 

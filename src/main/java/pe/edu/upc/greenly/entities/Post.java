@@ -2,6 +2,7 @@ package pe.edu.upc.greenly.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -19,9 +20,9 @@ public class Post {
     @Lob
     private byte[] imagen;
 
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @Column(name = "fecha_publicacion")
-    private Date fechaPublicacion;
+    private LocalDate fechaPublicacion;
 
     @ManyToOne
     @JoinColumn(name = "campaña_id_campaña")
@@ -34,7 +35,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long idPosts, String contenido, byte[] imagen, Date fechaPublicacion, Campaña campaña) {
+    public Post(Long idPosts, String contenido, byte[] imagen, LocalDate fechaPublicacion, Campaña campaña) {
         this.idPosts = idPosts;
         this.contenido = contenido;
         this.imagen = imagen;
@@ -66,11 +67,11 @@ public class Post {
         this.imagen = imagen;
     }
 
-    public Date getFechaPublicacion() {
+    public LocalDate getFechaPublicacion() {
         return fechaPublicacion;
     }
 
-    public void setFechaPublicacion(Date fechaPublicacion) {
+    public void setFechaPublicacion(LocalDate fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
 

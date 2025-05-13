@@ -24,7 +24,7 @@ public class Campaña {
     @JoinColumn(name = "ubicacion_Campaña_id", referencedColumnName = "id")
     private Ubicacion_Campaña ubicacion_Campaña;
     @JsonIgnore
-    @OneToMany(mappedBy = "campaña", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "campaña", fetch = FetchType.EAGER)
     private List<Donacion> donacion;
 
     @JsonIgnore

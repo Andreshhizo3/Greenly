@@ -2,8 +2,10 @@ package pe.edu.upc.greenly.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.greenly.entities.EstadoDonacion;
-import pe.edu.upc.greenly.entities.TipoDonacion;
+import pe.edu.upc.greenly.dtos.OngDTO;
+import pe.edu.upc.greenly.dtos.PostDTO;
+import pe.edu.upc.greenly.dtos.TipoDonacionDTO;
+import pe.edu.upc.greenly.entities.*;
 import pe.edu.upc.greenly.repositories.TipoDonacionRepository;
 import pe.edu.upc.greenly.service.TipoDonacionService;
 
@@ -27,25 +29,26 @@ public class TipoDonacionServiceImpl implements TipoDonacionService {
 
     @Override
     public void deleteTipoDonacion(Long id) {
-        TipoDonacion tipoDonacionEncontrado = findById(id);
+        /*TipoDonacionDTO tipoDonacionEncontrado = findById(id);
         if (tipoDonacionEncontrado != null) {
             tipoDonacionRepository.delete(tipoDonacionEncontrado);
-        }
+        }*/
+        tipoDonacionRepository.deleteById(id);
     }
 
-    @Override
+    /*@Override
     public TipoDonacion findById(Long id) {
         return tipoDonacionRepository.findById(id).orElse(null);
-    }
+    }*/
 
     @Override
     public List<TipoDonacion> listAll() {
         return tipoDonacionRepository.findAll();
     }
 
-    @Override
+    /*@Override
     public TipoDonacion editTipoDonacion(TipoDonacion tipoDonacion) {
-        TipoDonacion tipoDonacionEncontrado = findById(tipoDonacion.getId());
+        TipoDonacionDTO tipoDonacionEncontrado = findById(tipoDonacion.getId());
 
         if (tipoDonacion.getNombre() != null || !tipoDonacion.getNombre().isEmpty()) {
             tipoDonacionEncontrado.setNombre(tipoDonacion.getNombre());
@@ -57,5 +60,39 @@ public class TipoDonacionServiceImpl implements TipoDonacionService {
         }
 
         return tipoDonacionRepository.save(tipoDonacionEncontrado);
+    }*/
+
+    @Override
+    public TipoDonacionDTO updateTipoDonacion(Long id, TipoDonacionDTO tipoDonacionDTO) {
+        // Buscar el TipoDonacion por ID
+        TipoDonacion tipoDonacion = tipoDonacionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("TipoDonacion no encontrada con ID: " + id));
+        // Actualizar solo si los valores no son null
+        if (tipoDonacionDTO.getNombre() != null) {
+            tipoDonacion.setNombre(tipoDonacionDTO.getNombre());
+        }
+            // Guardar los cambios
+            TipoDonacion updatedTipoDonacion = tipoDonacionRepository.save(tipoDonacion);
+            // Retornar el DTO actualizado
+            return new TipoDonacionDTO(
+                    updatedTipoDonacion.getId(),
+                    updatedTipoDonacion.getNombre()
+            );
     }
-}
+
+
+        @Override
+        public TipoDonacionDTO findById (Long id){
+            TipoDonacion tipoDonacion = tipoDonacionRepository.findById(id).orElse(null);
+            //if (tipoDonacion == null || tipoDonacion.getUsuario() == null) {
+            if (tipoDonacion == null) {
+                return null;
+            }
+
+            return new TipoDonacionDTO(
+                    tipoDonacion.getId(),
+                    tipoDonacion.getNombre()
+
+            );
+        }
+    }
