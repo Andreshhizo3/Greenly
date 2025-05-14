@@ -68,4 +68,16 @@ public class DonacionController {
         DonacionDTO dto = donacionService.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/listar/antiguas")
+    public ResponseEntity<List<DonacionDTO>> obtenerDonacionesMasAntiguas() {
+        List<DonacionDTO> donaciones = donacionService.obtenerDonacionesMasAntiguas();
+        return ResponseEntity.ok(donaciones);
+    }
+
+    @GetMapping("/listar/recientes")
+    public ResponseEntity<List<DonacionDTO>> obtenerDonacionesRecientes() {
+        List<DonacionDTO> donaciones = donacionService.obtenerDonacionesRecientes();
+        return ResponseEntity.ok(donaciones);
+    }
 }

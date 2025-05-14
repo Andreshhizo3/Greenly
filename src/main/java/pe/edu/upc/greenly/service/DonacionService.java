@@ -13,4 +13,6 @@ public interface DonacionService {
     public List<DonacionDTO> listAll();
     //public Donacion editDonacion(Donacion donacionDTO);
     DonacionDTO updateDonacion(Long id, DonacionDTO dto);
+    List<DonacionDTO> obtenerDonacionesMasAntiguas();
+    List<DonacionDTO> obtenerDonacionesRecientes();
 }

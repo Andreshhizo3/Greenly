@@ -278,4 +278,14 @@ public class DonacionServiceImpl implements DonacionService {
                 updated.getEstadoDonacion() != null ? updated.getEstadoDonacion().getId() : null
         );
     }
+
+    @Override
+    public List<DonacionDTO> obtenerDonacionesMasAntiguas() {
+        return donacionRepository.donacionesMasAntiguas();
+    }
+
+    @Override
+    public List<DonacionDTO> obtenerDonacionesRecientes() {
+        return donacionRepository.donacionesRecientes();
+    }
 }
