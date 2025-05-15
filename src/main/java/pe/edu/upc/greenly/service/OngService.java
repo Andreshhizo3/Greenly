@@ -11,4 +11,5 @@ public interface OngService {
     OngDTO findById(Long id);
     List<OngDTO> listAll();
     OngDTO updateOng(Long id, OngDTO ongDTO);
+    List<OngDTO> findOngsConCampañasEnAnio(int anio);
 }

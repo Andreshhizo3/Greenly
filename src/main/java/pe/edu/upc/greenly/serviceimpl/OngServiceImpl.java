@@ -166,5 +166,18 @@ public class OngServiceImpl implements OngService {
                 updatedOng.getUsuario() != null ? updatedOng.getUsuario().getId() : null
         );
     }
-
+    public List<OngDTO> findOngsConCampañasEnAnio(int anio) {
+        List<Ong> ongs = ongRepository.findOngsConCampañasEnAnio(anio);
+        return ongs.stream()
+                .map(ong -> new OngDTO(
+                        ong.getId(),
+                        ong.getNombre(),
+                        ong.getDescripcion(),
+                        ong.getCorreo(),
+                        ong.getDireccion(),
+                        ong.getTelefono(),
+                        ong.getUsuario() != null ? ong.getUsuario().getId() : null
+                ))
+                .collect(Collectors.toList());
+    }
 }

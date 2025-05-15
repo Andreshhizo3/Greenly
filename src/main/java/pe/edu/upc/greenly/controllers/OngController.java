@@ -42,4 +42,9 @@ public class OngController {
         OngDTO updatedOng = ongService.updateOng(id, ongDTO);
         return ResponseEntity.ok(updatedOng);
     }
+    @GetMapping("/campanas-anio/{anio}")
+    public ResponseEntity<List<OngDTO>> getOngsPorAnioCampañas(@PathVariable int anio) {
+        List<OngDTO> resultado = ongService.findOngsConCampañasEnAnio(anio);
+        return ResponseEntity.ok(resultado);
+    }
 }
