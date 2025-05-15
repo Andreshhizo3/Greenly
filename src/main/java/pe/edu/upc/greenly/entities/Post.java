@@ -18,6 +18,7 @@ public class Post {
     private String contenido;
 
     @Lob
+    @Basic(fetch = FetchType.EAGER)
     private byte[] imagen;
 
     //@Temporal(TemporalType.DATE)

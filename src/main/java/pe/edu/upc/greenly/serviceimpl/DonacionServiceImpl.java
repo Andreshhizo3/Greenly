@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.greenly.dtos.CampañaDTO;
 import pe.edu.upc.greenly.dtos.DonacionDTO;
+import pe.edu.upc.greenly.dtos.TotalDonacionesPorCampañaDTO;
 import pe.edu.upc.greenly.entities.*;
 import pe.edu.upc.greenly.repositories.*;
 import pe.edu.upc.greenly.service.DonacionService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -277,5 +279,23 @@ public class DonacionServiceImpl implements DonacionService {
                 updated.getTipoDonacion() != null ? updated.getTipoDonacion().getId() : null,
                 updated.getEstadoDonacion() != null ? updated.getEstadoDonacion().getId() : null
         );
+    }
+
+
+    //4. SQL QUERY TOTAL DE DONACIONES POR CAMPAÑA
+    @Override
+    public List<TotalDonacionesPorCampañaDTO> obtenerTotalesPorCampaña() {
+        List<Object[]> resultados = donacionRepository.findTotalesPorCampaña();
+        List<TotalDonacionesPorCampañaDTO> listaDTO = new ArrayList<>();
+
+        for (Object[] fila : resultados) {
+            Long campañaId = ((Number) fila[0]).longValue();
+            String nombreCampaña = (String) fila[1];
+            Double total = ((Number) fila[2]).doubleValue();
+
+            listaDTO.add(new TotalDonacionesPorCampañaDTO(campañaId, nombreCampaña, total));
+        }
+
+        return listaDTO;
     }
 }

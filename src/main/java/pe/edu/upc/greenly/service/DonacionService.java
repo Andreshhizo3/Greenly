@@ -1,6 +1,7 @@
 package pe.edu.upc.greenly.service;
 
 import pe.edu.upc.greenly.dtos.DonacionDTO;
+import pe.edu.upc.greenly.dtos.TotalDonacionesPorCampañaDTO;
 import pe.edu.upc.greenly.entities.Donacion;
 import pe.edu.upc.greenly.entities.TipoDonacion;
 
@@ -13,4 +14,7 @@ public interface DonacionService {
     public List<DonacionDTO> listAll();
     //public Donacion editDonacion(Donacion donacionDTO);
     DonacionDTO updateDonacion(Long id, DonacionDTO dto);
+
+    //3. SQL QUERY TOTAL DE DONACIONES POR CAMPAÑA
+    List<TotalDonacionesPorCampañaDTO> obtenerTotalesPorCampaña();
 }

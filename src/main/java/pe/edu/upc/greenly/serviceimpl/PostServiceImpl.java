@@ -13,6 +13,7 @@ import pe.edu.upc.greenly.repositories.CampañaRepository;
 import pe.edu.upc.greenly.repositories.PostRepository;
 import pe.edu.upc.greenly.service.PostService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -153,5 +154,7 @@ public class PostServiceImpl implements PostService {
                 updatedPost.getCampaña() != null ? updatedPost.getCampaña().getId() : null
         );
     }
+
+    //Query Method (Spring Data JPA)
 
 }

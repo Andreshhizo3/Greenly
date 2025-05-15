@@ -12,4 +12,7 @@ public interface PostService {
     PostDTO findById(Long id);
     PostDTO updatePost(Long id, PostDTO postDTO);
     void deletePost(Long id);
+
+    //Query Method (Spring Data JPA)
+
 }

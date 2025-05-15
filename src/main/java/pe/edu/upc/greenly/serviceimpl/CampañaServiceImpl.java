@@ -1,5 +1,6 @@
 package pe.edu.upc.greenly.serviceimpl;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.greenly.dtos.CampañaDTO;
@@ -171,5 +172,14 @@ public class CampañaServiceImpl implements CampañaService {
        );
    }
 
+   //Query Method Obtener campañas por Ong ingresado
+   @Transactional
+   @Override
+   public List<CampañaDTO> obtenerCampañasPorOng(Long ongId) {
+       List<Campaña> campañas = campañaRepository.findByOngId(ongId);
+       return campañas.stream()
+               .map(c -> new CampañaDTO(c.getId(), c.getTitulo(), c.getDescripcion(), c.getFechaInicio(), c.getFechaFin(), c.getOng().getId(), c.getUbicacion_Campaña().getId()))
+               .collect(Collectors.toList());
+   }
 
 }

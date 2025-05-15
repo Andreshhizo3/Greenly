@@ -46,4 +46,7 @@ public class PostController {
         PostDTO updatedPost = postService.updatePost(id, postDTO);
         return ResponseEntity.ok(updatedPost);
     }
+
+
+
 }

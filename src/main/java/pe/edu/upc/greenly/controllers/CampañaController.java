@@ -42,4 +42,9 @@ public class CampañaController {
         CampañaDTO updated = campañaService.updateCampaña(id, dto);
         return ResponseEntity.ok(updated);
     }
+
+    @GetMapping("/obtenerCampañasPorOng/{ongId}")
+    public List<CampañaDTO> obtenerCampañasPorOng(@PathVariable Long ongId) {
+        return campañaService.obtenerCampañasPorOng(ongId);
+    }
 }

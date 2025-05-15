@@ -3,6 +3,7 @@ package pe.edu.upc.greenly.serviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.greenly.dtos.CampañaDTO;
+import pe.edu.upc.greenly.dtos.ComentarioCampañaDTO;
 import pe.edu.upc.greenly.dtos.ComentarioDTO;
 import pe.edu.upc.greenly.entities.*;
 import pe.edu.upc.greenly.repositories.ComentarioRepository;
@@ -168,4 +169,12 @@ public class ComentarioServiceImpl implements ComentarioService {
                 updated.getDonante() != null ? updated.getDonante().getId() : null
         );
     }
+
+    //4. JPQL  TODOS LOS COMENTARIOS POR CAMPAÑA
+
+    public List<ComentarioCampañaDTO> obtenerComentariosPorCampaña(Long campañaId) {
+        return comentarioRepository.findComentariosPorCampaña(campañaId);
+    }
+
+
 }

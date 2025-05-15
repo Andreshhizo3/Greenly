@@ -12,4 +12,6 @@ public interface CampañaService {
     CampañaDTO findById(Long id);
     List<CampañaDTO> listAll();
     CampañaDTO updateCampaña(Long id, CampañaDTO dto);
+    //Query Method
+    List<CampañaDTO> obtenerCampañasPorOng(Long ongId);
 }

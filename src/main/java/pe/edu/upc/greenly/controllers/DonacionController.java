@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.CampañaDTO;
 import pe.edu.upc.greenly.dtos.DonacionDTO;
 import pe.edu.upc.greenly.dtos.DonanteDTO;
+import pe.edu.upc.greenly.dtos.TotalDonacionesPorCampañaDTO;
 import pe.edu.upc.greenly.entities.Donacion;
 import pe.edu.upc.greenly.entities.TipoDonacion;
 import pe.edu.upc.greenly.service.DonacionService;
@@ -67,5 +68,12 @@ public class DonacionController {
     public ResponseEntity<DonacionDTO> getCampaña(@PathVariable Long id) {
         DonacionDTO dto = donacionService.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
+    }
+
+    //5. SQL QUERY TOTAL DE DONACIONES POR CAMPAÑA
+    @GetMapping("/totales-por-campaña")
+    public ResponseEntity<List<TotalDonacionesPorCampañaDTO>> obtenerTotalesPorCampaña() {
+        List<TotalDonacionesPorCampañaDTO> resultado = donacionService.obtenerTotalesPorCampaña();
+        return ResponseEntity.ok(resultado);
     }
 }
