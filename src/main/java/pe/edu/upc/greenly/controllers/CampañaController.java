@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.CampañaDTO;
+import pe.edu.upc.greenly.entities.Campaña;
 import pe.edu.upc.greenly.service.CampañaService;
 
 import java.util.List;
@@ -46,5 +47,10 @@ public class CampañaController {
     @GetMapping("/obtenerCampañasPorOng/{ongId}")
     public List<CampañaDTO> obtenerCampañasPorOng(@PathVariable Long ongId) {
         return campañaService.obtenerCampañasPorOng(ongId);
+    }
+
+    @GetMapping("/sin-donaciones")
+    public List<Campaña> obtenerCampanasSinDonaciones() {
+        return campañaService.obtenerCampanasSinDonaciones();
     }
 }

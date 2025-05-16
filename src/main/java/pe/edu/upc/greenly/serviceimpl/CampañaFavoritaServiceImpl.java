@@ -124,4 +124,5 @@ public class CampañaFavoritaServiceImpl implements CampañaFavoritaService {
                 updated.getDonante() != null ? updated.getDonante().getId() : null
         );
     }
+
 }

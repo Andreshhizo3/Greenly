@@ -14,4 +14,5 @@ public interface CampañaService {
     CampañaDTO updateCampaña(Long id, CampañaDTO dto);
     //Query Method
     List<CampañaDTO> obtenerCampañasPorOng(Long ongId);
+    List<Campaña> obtenerCampanasSinDonaciones();
 }

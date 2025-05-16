@@ -7,7 +7,10 @@ import pe.edu.upc.greenly.dtos.DonanteDTO;
 import pe.edu.upc.greenly.dtos.OngDTO;
 import pe.edu.upc.greenly.service.DonanteService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/Greenly/donantes")
@@ -42,5 +45,18 @@ public class DonanteController {
         DonanteDTO updateDonante = donanteService.updateDonante(id, donanteDTO);
         return ResponseEntity.ok(updateDonante);
     }
+    @GetMapping("/ultima-donacion")
+    public List<Map<String, Object>> obtenerUltimaDonacionPorDonante() {
+        List<Object[]> resultados = donanteService.obtenerUltimaDonacionPorDonante();
+        List<Map<String, Object>> respuesta = new ArrayList<>();
 
+        for (Object[] fila : resultados) {
+            Map<String, Object> item = new HashMap<>();
+            item.put("nombre_donante", fila[0]);
+            item.put("ultima_donacion", fila[1]);
+            respuesta.add(item);
+        }
+
+        return respuesta;
+    }
 }

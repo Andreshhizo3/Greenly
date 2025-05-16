@@ -18,6 +18,10 @@ import java.util.stream.Collectors;
 public class DonanteServiceImpl implements DonanteService {
     @Autowired
     private DonanteRepository donanteRepository;
+    @Override
+    public List<Object[]> obtenerUltimaDonacionPorDonante() {
+        return donanteRepository.obtenerUltimaDonacionPorDonante();
+    }
 
     @Autowired
     private UsuarioRepository usuarioRepository;

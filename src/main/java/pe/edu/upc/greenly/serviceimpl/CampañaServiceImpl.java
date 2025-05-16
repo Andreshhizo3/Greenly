@@ -20,6 +20,11 @@ public class CampañaServiceImpl implements CampañaService {
     @Autowired
     private CampañaRepository campañaRepository;
 
+    @Override
+    public List<Campaña> obtenerCampanasSinDonaciones() {
+        return campañaRepository.obtenerCampanasSinDonaciones();
+    }
+
     @Autowired
     private OngRepository ongRepository;
 
