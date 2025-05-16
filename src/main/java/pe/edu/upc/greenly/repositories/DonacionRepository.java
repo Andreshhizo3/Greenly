@@ -9,6 +9,15 @@ import java.util.List;
 
 public interface DonacionRepository extends JpaRepository<Donacion, Long> {
 
+    // SQL QUERY TOTAL DE DONACIONES POR CAMPAÑA RONALD
+    @Query(value = "SELECT c.id AS campañaId, c.titulo AS nombreCampaña, SUM(d.monto_donado) AS total " +
+            "FROM donaciones d " +
+            "JOIN campaña c ON d.campaña_id = c.id " +
+            "GROUP BY c.id, c.titulo",
+            nativeQuery = true)
+    List<Object[]> findTotalesPorCampaña();
+
+
     @Query("SELECT new pe.edu.upc.greenly.dtos.DonacionDTO(" +
             "d.id, d.name, d.descripcion, d.montoDonado, d.metodoEntrega, d.fechaDonacion, " +
             "d.donante.id, d.campaña.id, d.tipoDonacion.id, d.estadoDonacion.id) " +

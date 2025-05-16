@@ -14,7 +14,8 @@ public interface CampañaService {
     CampañaDTO findById(Long id);
     List<CampañaDTO> listAll();
     CampañaDTO updateCampaña(Long id, CampañaDTO dto);
-
+    //Query Method RONALD
+    List<CampañaDTO> obtenerCampañasPorOng(Long ongId);
 
     // Método para obtener campañas que contienen texto en título o descripción
     List<Campaña> obtenerCampañasPorTituloODescripcion(String texto);

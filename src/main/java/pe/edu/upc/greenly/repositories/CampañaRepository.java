@@ -12,6 +12,9 @@ import java.util.List;
 
 
 public interface CampañaRepository extends JpaRepository<Campaña,Long> {
+    // 1. Query Method Obtener campañas por ONG ingresado (RONALD)
+    List<Campaña> findByOngId(Long ongId);
+
     // Consulta 1: descripción contiene texto y fechaInicio después de fecha dada
     List<Campaña> findByDescripcionContainingIgnoreCaseAndFechaInicioAfter(String texto, LocalDate fechaInicio);
     // Consulta 2: campañas que contienen texto en título o descripción

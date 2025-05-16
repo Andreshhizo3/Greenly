@@ -46,7 +46,14 @@ public class CampañaController {
         return ResponseEntity.ok(updated);
     }
 
-    // Query Method Endpoint para buscar campañas por descripción y fecha
+
+    //Obtener campaña por ONG RONALD
+    @GetMapping("/obtenerCampañasPorOng/{ongId}")
+    public List<CampañaDTO> obtenerCampañasPorOng(@PathVariable Long ongId) {
+        return campañaService.obtenerCampañasPorOng(ongId);
+    }
+
+    // Query Method Endpoint para buscar campañas por descripción y fecha ANDRES
     @GetMapping("/descripcion-fecha")
     public List<Campaña> buscarPorDescripcionYFechaInicio(
             @RequestParam("texto") String texto,
@@ -56,14 +63,14 @@ public class CampañaController {
     }
 
 
-    // Query Method Endpoint para buscar campañas por texto en título o descripción
+    // Query Method Endpoint para buscar campañas por texto en título o descripción ANDRES
     @GetMapping("/buscar")
     public List<Campaña> buscarPorTituloODescripcion(
             @RequestParam("texto") String texto) {
         return campañaService.obtenerCampañasPorTituloODescripcion(texto);
     }
 
-    // SQL Obtener campañas cuya fecha de inicio esté entre dos fechas específicas
+    // SQL Obtener campañas cuya fecha de inicio esté entre dos fechas específicas ANDRES
     @GetMapping("/rango-fechas")
     public List<Campaña> obtenerCampañasPorRangoFechas(
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
