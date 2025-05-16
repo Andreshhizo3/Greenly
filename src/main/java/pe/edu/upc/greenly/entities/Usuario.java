@@ -1,5 +1,6 @@
 package pe.edu.upc.greenly.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,22 +9,22 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String username;
     private String password;
-    private boolean enable;
+    private Boolean enable;
 
     // Relación uno a uno con Rol
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rol_id", referencedColumnName = "id")
+    @JsonIgnore
+    @OneToOne(mappedBy = "usuario")
     private Rol rol;
 
     // Constructor por defecto
     public Usuario() {}
 
     // Constructor con parámetros
-    public Usuario(int id, String username, String password, boolean enable, Rol rol) {
+    public Usuario(Long id, String username, String password, Boolean enable, Rol rol) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -32,11 +33,11 @@ public class Usuario {
     }
 
     // Getters y Setters
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -56,11 +57,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public boolean isEnable() {
+    public Boolean isEnable() {
         return enable;
     }
 
-    public void setEnable(boolean enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
 

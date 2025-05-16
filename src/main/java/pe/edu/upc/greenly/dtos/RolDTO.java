@@ -2,21 +2,24 @@ package pe.edu.upc.greenly.dtos;
 
 public class RolDTO {
 
-    private int id;
+    private Long id;
     private String rol;
+    private Long usuarioId;
 
-    // Constructor
-    public RolDTO(int id, String rol) {
+    public RolDTO(Long id, String rol, Long usuarioId) {
         this.id = id;
         this.rol = rol;
+        this.usuarioId = usuarioId;
     }
 
-    // Getters y Setters
-    public int getId() {
+    public RolDTO() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -26,5 +29,22 @@ public class RolDTO {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    @Override
+    public String toString() {
+        return "RolDTO{" +
+                "id=" + id +
+                ", rol='" + rol + '\'' +
+                ", usuarioId=" + usuarioId +
+                '}';
     }
 }

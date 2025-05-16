@@ -8,29 +8,30 @@ public class Rol {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String rol;
 
     // Relación uno a uno con Usuario
-    @OneToOne(mappedBy = "rol", fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
     private Usuario usuario;
 
     // Constructor por defecto
     public Rol() {}
 
     // Constructor con parámetros
-    public Rol(int id, String rol) {
+    public Rol(Long id, String rol) {
         this.id = id;
         this.rol = rol;
     }
 
     // Getters y Setters
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

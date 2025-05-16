@@ -2,27 +2,26 @@ package pe.edu.upc.greenly.dtos;
 
 public class UsuarioDTO {
 
-    private int id;
+    private Long id;
     private String username;
     private String password;
-    private boolean enable;
-    private RolDTO rol; // Relación con RolDTO
+    private Boolean enable;
 
-    // Constructor
-    public UsuarioDTO(int id, String username, String password, boolean enable, RolDTO rol) {
+    public UsuarioDTO(Long id, String username, String password, Boolean enable) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.enable = enable;
-        this.rol = rol;
     }
 
-    // Getters y Setters
-    public int getId() {
+    public UsuarioDTO() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,19 +41,21 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public boolean isEnable() {
+    public Boolean isEnable() {
         return enable;
     }
 
-    public void setEnable(boolean enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
 
-    public RolDTO getRol() {
-        return rol;
-    }
-
-    public void setRol(RolDTO rol) {
-        this.rol = rol;
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enable=" + enable +
+                '}';
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface RolService {
 
     RolDTO addRol(RolDTO rolDTO);
-    void deleteRol(int id);
-    RolDTO findById(int id);
+    void deleteRol(Long id);
+    RolDTO findById(Long id);
     List<RolDTO> listAll();
 }
