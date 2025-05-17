@@ -180,4 +180,12 @@ public class DonanteServiceImpl implements DonanteService {
                 updatedDonante.getUsuario() != null ? updatedDonante.getUsuario().getId() : null
         );
     }
+
+    public List<Donante> obtenerDonantesPorCampaña(Long campañaId) {
+        return donanteRepository.findDonantesByCampañaId(campañaId);
+    }
+    public List<Donante> findDonantesConMasDeXDonaciones(int cantidadMinima) {
+        return donanteRepository.findDonantesConMasDeXDonaciones(cantidadMinima);
+    }
+
 }

@@ -1,9 +1,5 @@
 package pe.edu.upc.greenly.dtos;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import pe.edu.upc.greenly.entities.Ong;
-
 import java.time.LocalDate;
 
 public class CampañaDTO {

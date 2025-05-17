@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.EstadoDonacionDTO;
 import pe.edu.upc.greenly.dtos.TipoDonacionDTO;
 import pe.edu.upc.greenly.entities.EstadoDonacion;
-import pe.edu.upc.greenly.entities.TipoDonacion;
 import pe.edu.upc.greenly.service.EstadoDonacionService;
-import pe.edu.upc.greenly.service.TipoDonacionService;
 
 import java.util.List;
 

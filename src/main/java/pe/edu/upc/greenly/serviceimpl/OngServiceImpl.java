@@ -85,6 +85,100 @@ public class OngServiceImpl implements OngService {
                         //ong.getUsuario().getId()
                         //Para que acepte las ONG con usuarioId null tambien
                         ong.getUsuario() != null ? ong.getUsuario().getId(): null
+
+                ))
+                .collect(Collectors.toList());
+    }
+
+    /*@Override
+    public OngDTO updateOng(Long id, OngDTO ongDTO) {
+        // Buscar la ONG por ID
+        Ong ong = ongRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ONG no encontrada con ID: " + id));
+
+        // Si el DTO incluye un usuarioId, buscar el usuario relacionado
+        Usuario usuario = null;
+        if (ongDTO.getUsuarioId() != null) {
+            usuario = usuarioRepository.findById(ongDTO.getUsuarioId())
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + ongDTO.getUsuarioId()));
+        }
+
+        // Actualizar los campos de la entidad ONG
+        ong.setNombre(ongDTO.getNombre());
+        ong.setDescripcion(ongDTO.getDescripcion());
+        ong.setCorreo(ongDTO.getCorreo());
+        ong.setDireccion(ongDTO.getDireccion());
+        ong.setTelefono(ongDTO.getTelefono());
+        ong.setUsuario(usuario);  // Puede ser null si se desea desvincular
+
+        // Guardar los cambios
+        Ong updatedOng = ongRepository.save(ong);
+
+        // Retornar el DTO actualizado
+        return new OngDTO(
+                updatedOng.getId(),
+                updatedOng.getNombre(),
+                updatedOng.getDescripcion(),
+                updatedOng.getCorreo(),
+                updatedOng.getDireccion(),
+                updatedOng.getTelefono(),
+                updatedOng.getUsuario() != null ? updatedOng.getUsuario().getId() : null
+        );
+    }*/
+
+    @Override
+    public OngDTO updateOng(Long id, OngDTO ongDTO) {
+        Ong ong = ongRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ONG no encontrada con ID: " + id));
+
+        // Solo actualizar si no es null
+        if (ongDTO.getNombre() != null) {
+            ong.setNombre(ongDTO.getNombre());
+        }
+        if (ongDTO.getDescripcion() != null) {
+            ong.setDescripcion(ongDTO.getDescripcion());
+        }
+        if (ongDTO.getCorreo() != null) {
+            ong.setCorreo(ongDTO.getCorreo());
+        }
+        if (ongDTO.getDireccion() != null) {
+            ong.setDireccion(ongDTO.getDireccion());
+        }
+        if (ongDTO.getTelefono() != null) {
+            ong.setTelefono(ongDTO.getTelefono());
+        }
+
+        // Solo actualizar usuario si se envía un ID
+        if (ongDTO.getUsuarioId() != null) {
+            Usuario usuario = usuarioRepository.findById(ongDTO.getUsuarioId())
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + ongDTO.getUsuarioId()));
+            ong.setUsuario(usuario);
+        }
+
+        Ong updatedOng = ongRepository.save(ong);
+
+        return new OngDTO(
+                updatedOng.getId(),
+                updatedOng.getNombre(),
+                updatedOng.getDescripcion(),
+                updatedOng.getCorreo(),
+                updatedOng.getDireccion(),
+                updatedOng.getTelefono(),
+                updatedOng.getUsuario() != null ? updatedOng.getUsuario().getId() : null
+        );
+    }
+    public List<OngDTO> findOngsConCampañasEnAnio(int anio) {
+        List<Ong> ongs = ongRepository.findOngsConCampañasEnAnio(anio);
+        return ongs.stream()
+                .map(ong -> new OngDTO(
+                        ong.getId(),
+                        ong.getNombre(),
+                        ong.getDescripcion(),
+                        ong.getCorreo(),
+                        ong.getDireccion(),
+                        ong.getTelefono(),
+                        ong.getUsuario() != null ? ong.getUsuario().getId() : null
+
                 ))
                 .collect(Collectors.toList());
     }

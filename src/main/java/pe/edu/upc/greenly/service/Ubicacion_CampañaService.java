@@ -1,6 +1,5 @@
 package pe.edu.upc.greenly.service;
 
-import pe.edu.upc.greenly.dtos.RolDTO;
 import pe.edu.upc.greenly.dtos.Ubicacion_CampañaDTO;
 
 import java.util.List;

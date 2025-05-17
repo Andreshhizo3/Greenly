@@ -2,13 +2,15 @@ package pe.edu.upc.greenly.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import pe.edu.upc.greenly.dtos.OngDTO;
 import pe.edu.upc.greenly.dtos.PostDTO;
 import pe.edu.upc.greenly.entities.Campaña;
 import pe.edu.upc.greenly.entities.Ong;
 import pe.edu.upc.greenly.entities.Post;
 import pe.edu.upc.greenly.entities.Usuario;
+import pe.edu.upc.greenly.dtos.PostDTO;
+import pe.edu.upc.greenly.entities.Campaña;
+import pe.edu.upc.greenly.entities.Post;
 import pe.edu.upc.greenly.repositories.CampañaRepository;
 import pe.edu.upc.greenly.repositories.PostRepository;
 import pe.edu.upc.greenly.service.PostService;

@@ -7,6 +7,7 @@ import pe.edu.upc.greenly.dtos.Ubicacion_CampañaDTO;
 import pe.edu.upc.greenly.dtos.UsuarioDTO;
 import pe.edu.upc.greenly.entities.Rol;
 import pe.edu.upc.greenly.entities.Ubicacion_Campaña;
+import pe.edu.upc.greenly.dtos.UsuarioDTO;
 import pe.edu.upc.greenly.entities.Usuario;
 import pe.edu.upc.greenly.repositories.UsuarioRepository;
 import pe.edu.upc.greenly.service.RolService;

@@ -1,9 +1,5 @@
 package pe.edu.upc.greenly.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.Data;
-
 import java.time.LocalDate;
 
 public class DonacionDTO {

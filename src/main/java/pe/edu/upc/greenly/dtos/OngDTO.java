@@ -1,9 +1,5 @@
 package pe.edu.upc.greenly.dtos;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import pe.edu.upc.greenly.entities.Usuario;
-
 public class OngDTO {
     private Long id;
     private String nombre;

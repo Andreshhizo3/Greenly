@@ -8,8 +8,8 @@ import pe.edu.upc.greenly.dtos.CampañaDTO;
 import pe.edu.upc.greenly.dtos.ComentarioDTO;
 import pe.edu.upc.greenly.dtos.TipoDonacionDTO;
 import pe.edu.upc.greenly.entities.EstadoDonacion;
+import pe.edu.upc.greenly.dtos.TipoDonacionDTO;
 import pe.edu.upc.greenly.entities.TipoDonacion;
-import pe.edu.upc.greenly.service.EstadoDonacionService;
 import pe.edu.upc.greenly.service.TipoDonacionService;
 
 import java.util.List;

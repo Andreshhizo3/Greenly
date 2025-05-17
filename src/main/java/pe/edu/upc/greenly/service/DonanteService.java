@@ -11,4 +11,8 @@ public interface DonanteService {
     DonanteDTO findDonanteById(Long id);
     List<DonanteDTO> listAllDonantes();
     DonanteDTO updateDonante(Long id, DonanteDTO donanteDTO);
+
+    List<Donante> obtenerDonantesPorCampaña(Long campañaId);
+    List<Donante> findDonantesConMasDeXDonaciones(int cantidadMinima);
+
 }

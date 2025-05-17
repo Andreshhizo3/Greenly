@@ -1,10 +1,12 @@
 package pe.edu.upc.greenly.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.DonanteDTO;
 import pe.edu.upc.greenly.dtos.OngDTO;
+import pe.edu.upc.greenly.entities.Donante;
 import pe.edu.upc.greenly.service.DonanteService;
 
 import java.util.List;
@@ -43,4 +45,14 @@ public class DonanteController {
         return ResponseEntity.ok(updateDonante);
     }
 
+    @GetMapping("/por-campaña/{id}")
+    public ResponseEntity<List<Donante>> obtenerPorCampaña(@PathVariable("id") Long id) {
+        List<Donante> donantes = donanteService.obtenerDonantesPorCampaña(id);
+        return new ResponseEntity<>(donantes, HttpStatus.OK);
+    }
+    @GetMapping("/mas-donaciones/{cantidad}")
+    public ResponseEntity<List<Donante>> getDonantesConMasDonaciones(@PathVariable int cantidad) {
+        List<Donante> resultado = donanteService.findDonantesConMasDeXDonaciones(cantidad);
+        return ResponseEntity.ok(resultado);
+    }
 }

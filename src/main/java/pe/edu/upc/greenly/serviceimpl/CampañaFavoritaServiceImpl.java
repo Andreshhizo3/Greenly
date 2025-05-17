@@ -7,6 +7,10 @@ import pe.edu.upc.greenly.dtos.CampañaFavoritaDTO;
 import pe.edu.upc.greenly.dtos.ComentarioDTO;
 import pe.edu.upc.greenly.dtos.OngDTO;
 import pe.edu.upc.greenly.entities.*;
+import pe.edu.upc.greenly.dtos.CampañaFavoritaDTO;
+import pe.edu.upc.greenly.entities.Campaña;
+import pe.edu.upc.greenly.entities.CampañaFavorita;
+import pe.edu.upc.greenly.entities.Donante;
 import pe.edu.upc.greenly.repositories.CampañaFavoritaRepository;
 import pe.edu.upc.greenly.repositories.CampañaRepository;
 import pe.edu.upc.greenly.repositories.DonanteRepository;
@@ -124,4 +128,5 @@ public class CampañaFavoritaServiceImpl implements CampañaFavoritaService {
                 updated.getDonante() != null ? updated.getDonante().getId() : null
         );
     }
+
 }

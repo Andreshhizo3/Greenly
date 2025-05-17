@@ -2,6 +2,7 @@ package pe.edu.upc.greenly.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.greenly.dtos.CampañaDTO;
 import pe.edu.upc.greenly.entities.Campaña;
 import pe.edu.upc.greenly.entities.Ong;
@@ -11,6 +12,7 @@ import pe.edu.upc.greenly.repositories.OngRepository;
 import pe.edu.upc.greenly.repositories.Ubicacion_CampañaRepository;
 import pe.edu.upc.greenly.service.CampañaService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -170,6 +172,33 @@ public class CampañaServiceImpl implements CampañaService {
                updated.getUbicacion_Campaña() != null ? updated.getUbicacion_Campaña().getId() : null
        );
    }
+
+    //Query Method Obtener campañas por Ong ingresado RONALD
+    @jakarta.transaction.Transactional
+    @Override
+    public List<CampañaDTO> obtenerCampañasPorOng(Long ongId) {
+        List<Campaña> campañas = campañaRepository.findByOngId(ongId);
+        return campañas.stream()
+                .map(c -> new CampañaDTO(c.getId(), c.getTitulo(), c.getDescripcion(), c.getFechaInicio(), c.getFechaFin(), c.getOng().getId(), c.getUbicacion_Campaña().getId()))
+                .collect(Collectors.toList());
+    }
+   @Override
+   @Transactional(readOnly = true)
+   public List<Campaña> obtenerCampañasPorDescripcionYFechaInicio(String texto, LocalDate fechaInicio) {
+       return campañaRepository.findByDescripcionContainingIgnoreCaseAndFechaInicioAfter(texto, fechaInicio);
+   }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Campaña> obtenerCampañasPorTituloODescripcion(String texto) {
+        return campañaRepository.findByTituloContainingIgnoreCaseOrDescripcionContainingIgnoreCase(texto, texto);
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Campaña> obtenerCampañasPorRangoFechas(LocalDate fechaInicio, LocalDate fechaFin) {
+        return campañaRepository.obtenerCampañasPorRangoFechas(fechaInicio, fechaFin);
+    }
 
 
 }

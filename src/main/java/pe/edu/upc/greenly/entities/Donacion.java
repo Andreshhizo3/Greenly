@@ -16,12 +16,14 @@ public class Donacion {
     private Double montoDonado;
     private String metodoEntrega;
     private LocalDate fechaDonacion;
+
     /*
     private Long idDonante;
     private Long idCampaña;
     private Long idTipoDonacion;
     private Long idEstadoDonacion;
     */
+
     @ManyToOne
     @JoinColumn(name = "donante_id")
     private Donante donante;

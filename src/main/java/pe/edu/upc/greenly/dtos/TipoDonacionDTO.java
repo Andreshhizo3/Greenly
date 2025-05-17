@@ -1,7 +1,5 @@
 package pe.edu.upc.greenly.dtos;
 
-import java.time.LocalDate;
-
 public class TipoDonacionDTO {
     private Long id;
     private String nombre;

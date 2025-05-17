@@ -1,7 +1,5 @@
 package pe.edu.upc.greenly.dtos;
 
-import pe.edu.upc.greenly.entities.Usuario;
-
 import java.time.LocalDate;
 
 public class DonanteDTO {

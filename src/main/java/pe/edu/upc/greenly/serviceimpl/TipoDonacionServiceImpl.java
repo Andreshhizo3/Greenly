@@ -6,6 +6,8 @@ import pe.edu.upc.greenly.dtos.OngDTO;
 import pe.edu.upc.greenly.dtos.PostDTO;
 import pe.edu.upc.greenly.dtos.TipoDonacionDTO;
 import pe.edu.upc.greenly.entities.*;
+import pe.edu.upc.greenly.dtos.TipoDonacionDTO;
+import pe.edu.upc.greenly.entities.TipoDonacion;
 import pe.edu.upc.greenly.repositories.TipoDonacionRepository;
 import pe.edu.upc.greenly.service.TipoDonacionService;
 

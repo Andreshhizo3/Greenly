@@ -7,6 +7,7 @@ import pe.edu.upc.greenly.dtos.CampañaDTO;
 import pe.edu.upc.greenly.dtos.CampañaFavoritaDTO;
 import pe.edu.upc.greenly.dtos.OngDTO;
 import pe.edu.upc.greenly.entities.CampañaFavorita;
+import pe.edu.upc.greenly.dtos.CampañaFavoritaDTO;
 import pe.edu.upc.greenly.service.CampañaFavoritaService;
 
 import java.util.List;
@@ -48,5 +49,20 @@ public class CampañaFavoritaController {
             @RequestBody CampañaFavoritaDTO dto) {
         CampañaFavoritaDTO updated = campañaFavoritaService.updateCampañaFavorita(id, dto);
         return ResponseEntity.ok(updated);
+
     }
+    @GetMapping("/obtener/{id}")
+    public ResponseEntity<CampañaFavoritaDTO> getCampañaFavorita(@PathVariable Long id) {
+        CampañaFavoritaDTO dto = campañaFavoritaService.findById(id);
+        return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<CampañaFavoritaDTO> modificarCampañaFavorita(
+            @PathVariable Long id,
+            @RequestBody CampañaFavoritaDTO dto) {
+        CampañaFavoritaDTO updated = campañaFavoritaService.updateCampañaFavorita(id, dto);
+        return ResponseEntity.ok(updated);
+    }
+
 }

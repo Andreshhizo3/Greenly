@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.OngDTO;
 import pe.edu.upc.greenly.dtos.PostDTO;
 import pe.edu.upc.greenly.entities.Post;
+import pe.edu.upc.greenly.dtos.PostDTO;
 import pe.edu.upc.greenly.service.PostService;
 
 import java.util.List;

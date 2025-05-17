@@ -1,24 +1,22 @@
 package pe.edu.upc.greenly.dtos;
+
 import java.time.LocalDate;
-import java.util.Date;
 
-
-public class ComentarioDTO {
+//1. JPQL  TODOS LOS COMENTARIOS POR CAMPAÑA
+public class ComentarioCampañaDTO {
     private Long idComentario;
     private String contenido;
     private LocalDate fechaComentario;
-    private Long postId;
-    private Long donanteId;
+    private String nombreCampaña;
 
-    public ComentarioDTO(Long idComentario, String contenido, LocalDate fechaComentario, Long postId, Long donanteId) {
+    public ComentarioCampañaDTO(Long idComentario, String contenido, LocalDate fechaComentario, String nombreCampaña) {
         this.idComentario = idComentario;
         this.contenido = contenido;
         this.fechaComentario = fechaComentario;
-        this.postId = postId;
-        this.donanteId = donanteId;
+        this.nombreCampaña = nombreCampaña;
     }
 
-    public ComentarioDTO() {
+    public ComentarioCampañaDTO() {
     }
 
     public Long getIdComentario() {
@@ -45,19 +43,11 @@ public class ComentarioDTO {
         this.fechaComentario = fechaComentario;
     }
 
-    public Long getPostId() {
-        return postId;
+    public String getNombreCampaña() {
+        return nombreCampaña;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
-    }
-
-    public Long getDonanteId() {
-        return donanteId;
-    }
-
-    public void setDonanteId(Long donanteId) {
-        this.donanteId = donanteId;
+    public void setNombreCampaña(String nombreCampaña) {
+        this.nombreCampaña = nombreCampaña;
     }
 }
